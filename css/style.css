@@ -1,23 +1,41 @@
+:root {
+  --bgMain: #0a1f44;
+  --darkred: #c3112d;
+}
 body {
-    font-family: sans-serif;
+  font-family: sans-serif;
   font-size: 2rem;
+  background-color: #eae7dc;
 }
 .flexboxContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 25vh;
-    margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12vh;
+  margin-bottom: 4rem;
 }
 .inputArea {
-    margin-left: 8rem;
+  margin-left: 8rem;
 }
 .displayArea {
-    margin-top: 2rem;
-    height: 50rem;
-    width: 60rem;
-    border: 2.5px solid grey;
-    border-radius:4px;
-    box-shadow: 0rem 0rem 1.5rem grey;
+  margin-top: 2rem;
+  height: 50rem;
+  width: 60rem;
+  border: 2.5px solid #bab2b5;
+  border-radius: 4px;
+  box-shadow: 0rem 0rem 1.5rem #bab2b5;
+  background-color: #d8c3a5;
 }
 
+
+input {
+    border: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    background-color: transparent;
+}
+
+.inputAreaBtn {
+    color: #ffff;
+    background-color: #e98074;
+}
