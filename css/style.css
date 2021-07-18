@@ -6,6 +6,7 @@ body {
   font-family: sans-serif;
   font-size: 2rem;
   background-color: #eae7dc;
+  overflow-y: hidden;
 }
 .flexboxContainer {
   display: flex;
@@ -38,4 +39,20 @@ input {
 .inputAreaBtn {
     color: #ffff;
     background-color: #e98074;
+}
+
+
+@media screen and (max-width:650px) {
+    .displayArea{
+        width: 80vw;
+        margin-left: 4rem;
+    }
+}
+@media screen and (max-width:470px) {
+    body {
+        font-size: 1.6rem;
+    }
+    .inputArea {
+        margin-left: 4rem;
+      }
 }
