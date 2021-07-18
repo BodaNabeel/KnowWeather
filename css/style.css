@@ -1,0 +1,23 @@
+body {
+    font-family: sans-serif;
+  font-size: 2rem;
+}
+.flexboxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25vh;
+    margin-bottom: 4rem;
+}
+.inputArea {
+    margin-left: 8rem;
+}
+.displayArea {
+    margin-top: 2rem;
+    height: 50rem;
+    width: 60rem;
+    border: 2.5px solid grey;
+    border-radius:4px;
+    box-shadow: 0rem 0rem 1.5rem grey;
+}
+
