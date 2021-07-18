@@ -11,3 +11,8 @@ checkBtn.addEventListener('click', ()=>{
     let location = inputField.value
     console.log(location)
 })
+
+// Adding Reset Btn Functionality that will bring website back to initial position
+resetBtn.addEventListener('click', () => {
+    window.location.reload()
+})
