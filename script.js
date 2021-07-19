@@ -11,7 +11,8 @@ const weatherDescription = document.querySelector(".weatherDescription");
 const displayArea = document.querySelector(".displayArea");
 
 // Using this to create a new div in which weather will be shown
-let containerWeather = document.createElement("div.weatherArea");
+let containerWeather = document.createElement("div");
+containerWeather.classList.add("containerWeather")
 
 // Inilizers only
 let currentLocation;
@@ -34,15 +35,11 @@ const addMarkUp = function (
   pressure
 ) {
   markup = `
-  <div class="location">
-    <p class="city">${city},</p> 
-    <p class="country">${country}</p> 
-  </div>
-
+  <p class="location"> ${city}, ${country} </p>
   <div class="weatherInfo">
      <img src="${icon}" class="weatherImg">
      <p class="weatherDescription">${detailedWeather}</p>   
-     <p class="weatherInCalcius">${weather_}℃</p>
+     <p class="weather">${weather_}°C</p>
   </div>
 
   <ul class="microDetails">
@@ -115,3 +112,5 @@ checkBtn.addEventListener("click", () => {
 
 // Adding resetBtn funcitonality
 resetBtn.addEventListener("click", rmvMarkup);
+
+

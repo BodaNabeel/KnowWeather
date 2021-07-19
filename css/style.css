@@ -22,6 +22,7 @@ body {
   border-radius: 4px;
   box-shadow: 0rem 0rem 1.5rem #bab2b5;
   background-color: #ffff;
+  border-radius: 2rem;
 }
 
 input {
@@ -35,16 +36,51 @@ input {
   color: #ffff;
   background-color: #e98074;
 }
-.inputAreaBtn:hover{
-    cursor: pointer;
+.inputAreaBtn:hover {
+  cursor: pointer;
 }
 .weatherDescription {
   text-transform: capitalize;
 }
 
-
-
-
+/* Styling  Weather Display Model*/
+.containerWeather {
+  margin-top: 1rem;
+}
+.location {
+  text-align: center;
+  font-size: 2.2rem;
+}
+.weatherInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.weatherImg {
+  height: 15rem;
+  width: 20rem;
+  /* TODO: give it a nice effect in background */
+}
+.weatherDescription {
+  background-color: #d8c3a5;
+  padding: 0.5rem;
+  border-radius: 2rem;
+}
+.weather {
+  margin-top: 2rem;
+  font-size: 6rem;
+  font-family: sans-serif;
+  font-weight: 500;
+}
+.microDetails {
+  display: flex;
+  list-style: none;
+}
+.microDetailsList{
+  margin: 2rem;
+  margin-left: 1.2rem;
+}
 @media screen and (max-width: 650px) {
   .displayArea {
     width: 80vw;
