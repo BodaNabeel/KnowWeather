@@ -48,7 +48,7 @@ checkBtn.addEventListener("click", () => {
       const containerMarkup = document.createElement("div.weatherArea");
       const markup = `
       <p class="city">${city}</p>
-          <p class="weatherInCalcius">${weatherInCalcius}</p>
+          <p class="weatherInCalcius">${weatherInCalcius}℃</p>
           <img src="${icon}" class="weatherImg">
           <p class="weatherDescription">${detailedWeather}</p>
       `;
