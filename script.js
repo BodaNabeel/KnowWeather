@@ -23,12 +23,38 @@ let weatherArr = [];
 let iconArr = [];
 
 // Creating function for adding markup
-const addMarkUp = function (city, weather_, icon, detailedWeather) {
+const addMarkUp = function (
+  city,
+  country,
+  weather_,
+  icon,
+  detailedWeather,
+  windSpeed,
+  humidity,
+  pressure
+) {
   markup = `
-      <p class="city">${city}</p>
-      <p class="weatherInCalcius">${weather_}℃</p>
-      <img src="${icon}" class="weatherImg">
-      <p class="weatherDescription">${detailedWeather}</p>
+  <div class="location">
+    <p class="city">${city},</p> 
+    <p class="country">${country}</p> 
+  </div>
+
+  <div class="weatherInfo">
+     <img src="${icon}" class="weatherImg">
+     <p class="weatherDescription">${detailedWeather}</p>   
+     <p class="weatherInCalcius">${weather_}℃</p>
+  </div>
+
+  <ul class="microDetails">
+      <li class="microDetailsList">${windSpeed}km/hr</li>
+      <li class="microDetailsList">${humidity}</li>
+      <li class="microDetailsList">${pressure} mBar</li>
+  </ul>
+
+  <div class="sunTiming">
+      <span class="sunrise"></span>
+      <span class="sunset"></span>
+  </div>    
   `;
   containerWeather.innerHTML = markup;
   displayArea.appendChild(containerWeather);
@@ -65,12 +91,27 @@ checkBtn.addEventListener("click", () => {
       const weatherInCalcius = Math.round(weatherInKelvin - 273.15);
       const icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
       const detailedWeather = data.weather[0].description;
+      const country = data.sys.country;
+      const humidity = data.main.humidity;
+      const windSpeed = data.wind.speed;
+      const pressureInHPA = data.main.pressure;
+      const pressureInMBAR = Math.round(pressureInHPA/100)
+
 
       //Manipulating the markup
-      addMarkUp(city, weatherInCalcius, icon, detailedWeather);
+      addMarkUp(
+        city,
+        country,
+        weatherInCalcius,
+        icon,
+        detailedWeather,
+        windSpeed,
+        humidity,
+        pressureInMBAR
+      );
     }
   };
 });
 
 // Adding resetBtn funcitonality
-resetBtn.addEventListener('click', rmvMarkup)
+resetBtn.addEventListener("click", rmvMarkup);
