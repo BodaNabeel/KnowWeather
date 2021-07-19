@@ -6,12 +6,17 @@ const resetBtn = document.querySelector(".resetBtn");
 const inputField = document.querySelector(".inputField");
 const cityName = document.querySelector(".city");
 const weather = document.querySelector(".weatherInCalcius");
+const weatherImg = document.querySelector(".weatherImg");
+const weatherDescription = document.querySelector(".weatherDescription");
+const displayArea = document.querySelector(".displayArea");
 let currentLocation;
 
+let cityArr = [];
+let weatherArr = [];
+let iconArr = [];
 // checkBtn Functionality
 checkBtn.addEventListener("click", () => {
   currentLocation = inputField.value;
-  console.log(currentLocation);
 
   //   TODO:Understanding this working
   const xhr = new XMLHttpRequest();
@@ -28,17 +33,27 @@ checkBtn.addEventListener("click", () => {
     } else {
       // storing the data from API in data variable
       const data = JSON.parse(xhr.response);
-      console.log(data);
+      // console.log(data);
 
       // Storing important values from varaible data
       const city = data.name;
       const weatherInKelvin = data.main.temp;
       const weatherInCalcius = Math.round(weatherInKelvin - 273.15);
-      
-      // Manipulating the DOM
-      cityName.innerHTML = city;
-      weather.innerHTML = `${weatherInCalcius}°C`;
+      const icon = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      const detailedWeather = data.weather[0].description;
 
+      //Manipulating the markup
+
+      // Using this to create a new div in which weather detail of 1 place will be stored & on running this code continously i.e by added new places, new details will be added to UI
+      const containerMarkup = document.createElement("div.weatherArea");
+      const markup = `
+      <p class="city">${city}</p>
+          <p class="weatherInCalcius">${weatherInCalcius}</p>
+          <img src="${icon}" class="weatherImg">
+          <p class="weatherDescription">${detailedWeather}</p>
+      `;
+      containerMarkup.innerHTML = markup;
+      displayArea.appendChild(containerMarkup);
     }
   };
 });
