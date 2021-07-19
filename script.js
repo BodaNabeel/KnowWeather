@@ -9,16 +9,41 @@ const weather = document.querySelector(".weatherInCalcius");
 const weatherImg = document.querySelector(".weatherImg");
 const weatherDescription = document.querySelector(".weatherDescription");
 const displayArea = document.querySelector(".displayArea");
-let currentLocation;
 
+// Using this to create a new div in which weather will be shown
+let containerWeather = document.createElement("div.weatherArea");
+
+// Inilizers only
+let currentLocation;
+let markup;
+
+// Arrays
 let cityArr = [];
 let weatherArr = [];
 let iconArr = [];
+
+// Creating function for adding markup
+const addMarkUp = function (city, weather_, icon, detailedWeather) {
+  markup = `
+      <p class="city">${city}</p>
+      <p class="weatherInCalcius">${weather_}℃</p>
+      <img src="${icon}" class="weatherImg">
+      <p class="weatherDescription">${detailedWeather}</p>
+  `;
+  containerWeather.innerHTML = markup;
+  displayArea.appendChild(containerWeather);
+};
+
+// Creating a function to clear markup
+const rmvMarkup = function () {
+  inputField.value = "";
+  displayArea.removeChild(containerWeather);
+};
+
 // checkBtn Functionality
 checkBtn.addEventListener("click", () => {
   currentLocation = inputField.value;
 
-  //   TODO:Understanding this working
   const xhr = new XMLHttpRequest();
   xhr.open(
     "GET",
@@ -33,7 +58,6 @@ checkBtn.addEventListener("click", () => {
     } else {
       // storing the data from API in data variable
       const data = JSON.parse(xhr.response);
-      // console.log(data);
 
       // Storing important values from varaible data
       const city = data.name;
@@ -43,25 +67,10 @@ checkBtn.addEventListener("click", () => {
       const detailedWeather = data.weather[0].description;
 
       //Manipulating the markup
-
-      // Using this to create a new div in which weather detail of 1 place will be stored & on running this code continously i.e by added new places, new details will be added to UI
-      const containerMarkup = document.createElement("div.weatherArea");
-      const markup = `
-      <p class="city">${city}</p>
-          <p class="weatherInCalcius">${weatherInCalcius}℃</p>
-          <img src="${icon}" class="weatherImg">
-          <p class="weatherDescription">${detailedWeather}</p>
-      `;
-      containerMarkup.innerHTML = markup;
-      displayArea.appendChild(containerMarkup);
+      addMarkUp(city, weatherInCalcius, icon, detailedWeather);
     }
   };
 });
 
 // Adding resetBtn funcitonality
-resetBtn.addEventListener("click", () => {
-  console.log(currentLocation);
-  // this makes the page to reload and reach to its actual position
-  window.location.reload();
-  inputField.value = "";
-});
+resetBtn.addEventListener('click', rmvMarkup)
