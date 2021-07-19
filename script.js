@@ -4,6 +4,8 @@
 const checkBtn = document.querySelector(".checkBtn");
 const resetBtn = document.querySelector(".resetBtn");
 const inputField = document.querySelector(".inputField");
+const cityName = document.querySelector(".city");
+const weather = document.querySelector(".weatherInCalcius");
 let currentLocation;
 
 // checkBtn Functionality
@@ -19,14 +21,32 @@ checkBtn.addEventListener("click", () => {
   );
   xhr.send();
   xhr.onload = () => {
-    // we can change the data type to json also by
-    const data = JSON.parse(xhr.response);
-    console.log(data);
+    // setting this if/else to check if location given is correct.
+    // you've to put it in the start & then only you can work with rest code
+    if (xhr.status === 404) {
+      alert("Location Incorrect");
+    } else {
+      // storing the data from API in data variable
+      const data = JSON.parse(xhr.response);
+      console.log(data);
+
+      // Storing important values from varaible data
+      const city = data.name;
+      const weatherInKelvin = data.main.temp;
+      const weatherInCalcius = Math.round(weatherInKelvin - 273.15);
+      
+      // Manipulating the DOM
+      cityName.innerHTML = city;
+      weather.innerHTML = `${weatherInCalcius}°C`;
+
+    }
   };
 });
 
 // Adding resetBtn funcitonality
 resetBtn.addEventListener("click", () => {
   console.log(currentLocation);
+  // this makes the page to reload and reach to its actual position
   window.location.reload();
+  inputField.value = "";
 });
