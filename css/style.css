@@ -10,6 +10,7 @@ body {
   justify-content: center;
   margin-top: 12vh;
   margin-bottom: 4rem;
+  margin-left: -4rem;
 }
 .inputArea {
   margin-left: 8rem;
@@ -23,6 +24,8 @@ body {
   box-shadow: 0rem 0rem 1.5rem #bab2b5;
   background-color: #ffff;
   border-radius: 2rem;
+  overflow: hidden;
+  /* margin-left: 20rem; */
 }
 
 input {
@@ -78,8 +81,8 @@ input {
 }
 .microDetails {
   display: flex;
-  justify-content: space-evenly;
-
+  justify-content: space-around;
+  margin-left: -4rem;
   font-weight: 600;
   list-style: none;
 }
