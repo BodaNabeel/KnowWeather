@@ -136,7 +136,7 @@ checkBtn.addEventListener("click", () => {
       const year = date.getFullYear();
       const day = "0" + date.getDate();
       const month = `0${date.getMonth() + 1}`;
-      const currentDate = `${day}/${month.substr(-2)}/${year}`;
+      const currentDate = `${day.substr(-2)}/${month.substr(-2)}/${year}`;
       // substr() is a property used to show only a specific letters from a str, -ve starts counting from back side & +ve from front
 
       // Sunrise & Sunset
