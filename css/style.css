@@ -58,8 +58,8 @@ input {
   align-items: center;
 }
 .weatherImg {
-  height: 15rem;
-  width: 20rem;
+  height: 17rem;
+  width: 17rem;
   /* TODO: give it a nice effect in background */
 }
 .weatherDescription {
@@ -73,13 +73,26 @@ input {
   font-family: sans-serif;
   font-weight: 500;
 }
+.weatherInfo {
+  margin-bottom: -2rem;
+}
 .microDetails {
   display: flex;
+  justify-content: space-evenly;
+
+  font-weight: 600;
   list-style: none;
 }
 .microDetailsList{
   margin: 2rem;
   margin-left: 1.2rem;
+  font-size: 1.2rem;
+}
+.timeData {
+  display: flex;
+  justify-content: space-around;
+
+  margin: 1.2rem 0rem;
 }
 @media screen and (max-width: 650px) {
   .displayArea {

@@ -12,7 +12,7 @@ const displayArea = document.querySelector(".displayArea");
 
 // Using this to create a new div in which weather will be shown
 let containerWeather = document.createElement("div");
-containerWeather.classList.add("containerWeather")
+containerWeather.classList.add("containerWeather");
 
 // Inilizers only
 let currentLocation;
@@ -32,7 +32,10 @@ const addMarkUp = function (
   detailedWeather,
   windSpeed,
   humidity,
-  pressure
+  pressure,
+  date,
+  sunrise,
+  sunset
 ) {
   markup = `
   <p class="location"> ${city}, ${country} </p>
@@ -51,7 +54,23 @@ const addMarkUp = function (
   <div class="sunTiming">
       <span class="sunrise"></span>
       <span class="sunset"></span>
-  </div>    
+  </div> 
+  
+  
+  <div class="timeInfo">
+  <span class="timeData">
+    <p class="timeDataName">Date</p>
+    <p class="timeDataInfo">${date}</p>
+  </span>
+  <span class="timeData">
+    <p class="timeDataName">Sunrise</p>
+    <p class="timeDataInfo">${sunrise}</p>
+  </span>
+  <span class="timeData">
+    <p class="timeDataName">Sunset</p>
+    <p class="timeDataInfo">${sunset}</p>
+  </span>
+</div>
   `;
   containerWeather.innerHTML = markup;
   displayArea.appendChild(containerWeather);
@@ -61,6 +80,23 @@ const addMarkUp = function (
 const rmvMarkup = function () {
   inputField.value = "";
   displayArea.removeChild(containerWeather);
+};
+
+// function to convert unix to real time
+const convertUnix = function (timestamp) {
+  let dateCurrent = new Date(timestamp * 1000);
+  // Hours part from the timestamp
+  let hours = dateCurrent.getHours();
+  // Minutes part from the timestamp
+  let minutes = "0" + dateCurrent.getMinutes();
+  // Seconds part from the timestamp
+  let seconds = "0" + dateCurrent.getSeconds();
+
+  // Will display time in 10:30:23 format
+  let formattedTime =
+    hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+
+  return formattedTime
 };
 
 // checkBtn Functionality
@@ -81,6 +117,7 @@ checkBtn.addEventListener("click", () => {
     } else {
       // storing the data from API in data variable
       const data = JSON.parse(xhr.response);
+      console.log(data);
 
       // Storing important values from varaible data
       const city = data.name;
@@ -92,8 +129,19 @@ checkBtn.addEventListener("click", () => {
       const humidity = data.main.humidity;
       const windSpeed = data.wind.speed;
       const pressureInHPA = data.main.pressure;
-      const pressureInMBAR = Math.round(pressureInHPA/100)
+      const pressureInMBAR = Math.round(pressureInHPA / 100);
 
+      // Creating current date & time
+      const date = new Date();
+      const year = date.getFullYear();
+      const day = "0" + date.getDate();
+      const month = `0${date.getMonth() + 1}`;
+      const currentDate = `${day}/${month.substr(-2)}/${year}`;
+      // substr() is a property used to show only a specific letters from a str, -ve starts counting from back side & +ve from front
+
+      // Sunrise & Sunset
+      const sunrise = convertUnix(data.sys.sunrise);
+      const sunset = convertUnix(data.sys.sunset);
 
       //Manipulating the markup
       addMarkUp(
@@ -104,7 +152,10 @@ checkBtn.addEventListener("click", () => {
         detailedWeather,
         windSpeed,
         humidity,
-        pressureInMBAR
+        pressureInMBAR,
+        currentDate,
+        sunrise,
+        sunset
       );
     }
   };
@@ -112,5 +163,3 @@ checkBtn.addEventListener("click", () => {
 
 // Adding resetBtn funcitonality
 resetBtn.addEventListener("click", rmvMarkup);
-
-
