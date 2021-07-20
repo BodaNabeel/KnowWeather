@@ -46,16 +46,18 @@ const addMarkUp = function (
   </div>
 
   <ul class="microDetails">
-      <li class="microDetailsList">${windSpeed}km/hr</li>
-      <li class="microDetailsList">${humidity}</li>
-      <li class="microDetailsList">${pressure} mBar</li>
+      <li class="microDetailsList"> <span class="material-icons">
+      air
+      </span>
+       ${windSpeed}km/hr</li>
+      <li class="microDetailsList"><span class="material-icons">
+      water_drop
+      </span>
+       ${humidity}%</li>
+      <li class="microDetailsList"><span class="material-icons">
+      timer
+      </span> ${pressure} mBar</li>
   </ul>
-
-  <div class="sunTiming">
-      <span class="sunrise"></span>
-      <span class="sunset"></span>
-  </div> 
-  
   
   <div class="timeInfo">
   <span class="timeData">
@@ -96,7 +98,7 @@ const convertUnix = function (timestamp) {
   let formattedTime =
     hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
 
-  return formattedTime
+  return formattedTime;
 };
 
 // checkBtn Functionality
@@ -117,7 +119,6 @@ checkBtn.addEventListener("click", () => {
     } else {
       // storing the data from API in data variable
       const data = JSON.parse(xhr.response);
-      console.log(data);
 
       // Storing important values from varaible data
       const city = data.name;

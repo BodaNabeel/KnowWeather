@@ -87,6 +87,12 @@ input {
   margin: 2rem;
   margin-left: 1.2rem;
   font-size: 1.2rem;
+
+  display: flex;
+  align-items: center;
+}
+.material-icons {
+  margin-right: 0.5rem;
 }
 .timeData {
   display: flex;
