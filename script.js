@@ -166,11 +166,3 @@ checkBtn.addEventListener("click", () => {
 
 // Adding resetBtn funcitonality
 resetBtn.addEventListener("click", rmvMarkup);
-
-function showPosition(position) {
-  x.innerHTML =
-    "Latitude: " +
-    position.coords.latitude +
-    "<br>Longitude: " +
-    position.coords.longitude;
-}
