@@ -91,12 +91,14 @@ const convertUnix = function (timestamp) {
   let hours = dateCurrent.getHours();
   // Minutes part from the timestamp
   let minutes = "0" + dateCurrent.getMinutes();
-  // Seconds part from the timestamp
-  let seconds = "0" + dateCurrent.getSeconds();
 
-  // Will display time in 10:30:23 format
-  let formattedTime =
-    hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+  // Will display time in 12hr format
+  let formattedTime;
+  if (hours < 13) {
+    formattedTime = `${hours}:${minutes.substr(-2)} a.m`;
+  } else {
+    formattedTime = `${hours - 12}:${minutes.substr(-2)} p.m`;
+  }
 
   return formattedTime;
 };
@@ -137,7 +139,7 @@ checkBtn.addEventListener("click", () => {
       const year = date.getFullYear();
       const day = "0" + date.getDate();
       const month = `0${date.getMonth() + 1}`;
-      const currentDate = `${day.substr(-2)}/${month.substr(-2)}/${year}`;
+      const currentDate = `${day.substr(-2)}-${month.substr(-2)}-${year}`;
       // substr() is a property used to show only a specific letters from a str, -ve starts counting from back side & +ve from front
 
       // Sunrise & Sunset
@@ -164,3 +166,20 @@ checkBtn.addEventListener("click", () => {
 
 // Adding resetBtn funcitonality
 resetBtn.addEventListener("click", rmvMarkup);
+
+var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML =
+    "Latitude: " +
+    position.coords.latitude +
+    "<br>Longitude: " +
+    position.coords.longitude;
+}
